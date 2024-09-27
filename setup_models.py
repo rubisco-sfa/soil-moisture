@@ -4,7 +4,7 @@ import re
 import matplotlib.pyplot as plt
 
 intake_esgf.conf.set(
-    all_indices=False, local_cache="/lustre/orion/cli137/world-shared/ESGF-data"
+    all_indices=True, local_cache="/lustre/orion/cli137/world-shared/ESGF-data"
 )
 
 cat = intake_esgf.ESGFCatalog()
@@ -65,7 +65,7 @@ for s, m, g in cat.model_groups().index:
     clr = plt.get_cmap("tab20").colors[i]
     clr = "#%02x%02x%02x" % (int(255 * clr[0]), int(255 * clr[1]), int(255 * clr[2]))
     i += 1
-    setup += f"""
+    model = f"""
 {s}:
   modelname: {s}
   color: "{clr}"
@@ -73,7 +73,8 @@ for s, m, g in cat.model_groups().index:
   paths:
 {"\n".join([f"    - {path}" for path in paths])}
 """
-    print(setup)
+    print(model)
+    setup += model
 
 with open("models.yaml", mode="w") as out:
     out.write(setup)
