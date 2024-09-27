@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --job-name=ilambsm
 #SBATCH --account=cli137
-#SBATCH --time=3:00:00
+#SBATCH --time=6:00:00
 #SBATCH --nodes=4
 #SBATCH --output=%x.log
 
@@ -16,7 +16,7 @@ srun -n 16 --cpu-bind=cores --distribution=cyclic ilamb-run \
      --config soil_moisture.cfg \
      --model_setup models.yaml \
      --title "CMIP6 Soil Moisture" \
-     --define_regions arctic.txt \
-     --regions global arctic \
+     --define_regions ${ILAMB_ROOT}/regions/Koppen.nc \
+     --regions global tropical, arid, temperate, cold, polar \
      --build_dir ./_build \
      --rmse_score_basis cycle \
