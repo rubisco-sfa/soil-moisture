@@ -9,6 +9,7 @@ bash
 module unload darshan-runtime
 conda activate /ccs/proj/cli137/nate/ilamb272
 
+export PYTHONPATH=$PYTHONPATH:.
 export ILAMB_ROOT=/lustre/orion/cli137/proj-shared/soil_moisture
 cd $SLURM_SUBMIT_DIR
 
