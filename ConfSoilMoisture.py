@@ -33,9 +33,30 @@ def shift_to_volume_frac(var: Variable) -> Variable:
     return var
 
 
+def integrate_depth_range(var: Variable, z0: float, zf: float) -> Variable:
+    if var.layered:
+        var = var.integrateInDepth(z0=z0, zf=zf, mean=True)
+    else:
+        # we are assuming that this is mrsos
+        scale_factor = (zf - z0) / 0.1
+        with np.errstate(all="ignore"):
+            var.data *= scale_factor
+            if var.data_bnds is not None:
+                var.data_bnds *= scale_factor
+    return var
+
+
 class ConfSoilMoisture(Confrontation):
 
     def stageData(self, m):
+
+        # Each soil moisture comparison needs to have this parameter
+        depth_range = self.keywords.get("depth_range", None)
+        if depth_range is None:
+            raise ValueError(
+                "Each SM comparison must have a depth_range given of the form `depth_range = z0,zf"
+            )
+        depth_range = [float(z.strip()) for z in depth_range.split(",")]
 
         # Get out observations just like usual
         obs = Variable(
@@ -64,5 +85,10 @@ class ConfSoilMoisture(Confrontation):
         if is_volume_frac(obs) and is_mass_area_density(mod):
             mod = shift_to_volume_frac(mod)
         mod.convert(obs.unit)
+
+        # Do integrations if needed
+        if obs.layered:
+            obs = integrate_depth_range(obs, depth_range[0], depth_range[1])
+        mod = integrate_depth_range(mod, depth_range[0], depth_range[1])
 
         return obs, mod
