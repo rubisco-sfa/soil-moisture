@@ -62,7 +62,7 @@ class ConfSoilMoisture(Confrontation):
         obs = Variable(
             filename=self.source,
             variable_name=self.variable,
-            alternate_vars=self.alternate_vars,
+            alternate_vars=self.alternate_vars + ['mrsos','mrsol'],
             t0=None if len(self.study_limits) != 2 else self.study_limits[0],
             tf=None if len(self.study_limits) != 2 else self.study_limits[1],
         )
