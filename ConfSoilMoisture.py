@@ -19,15 +19,17 @@ def shift_to_volume_frac(var: Variable) -> Variable:
     if var.layered:
         thick = var.depth_bnds[:, 1] - var.depth_bnds[:, 0]
         # This won't work for site data or if there isn't a time dimension
-        var.data /= thick[np.newaxis, :, np.newaxis, np.newaxis]
-        if var.data_bnds is not None:
-            var.data_bnds /= thick[np.newaxis, :, np.newaxis, np.newaxis]
+        with np.errstate(all='ignore'):
+            var.data /= thick[np.newaxis, :, np.newaxis, np.newaxis]
+            if var.data_bnds is not None:
+                var.data_bnds /= thick[np.newaxis, :, np.newaxis, np.newaxis]
     else:
         # we are assuming that this is mrsos
         thick = 0.1
-        var.data /= thick
-        if var.data_bnds is not None:
-            var.data_bnds /= thick
+        with np.errstate(all='ignore'):
+            var.data /= thick
+            if var.data_bnds is not None:
+                var.data_bnds /= thick
     var.unit = var.unit + " m-1"
     var.convert("1")
     return var
