@@ -18,6 +18,6 @@ srun -n 16 --cpu-bind=cores --distribution=cyclic ilamb-run \
      --model_setup models.yaml \
      --title "CMIP6 Soil Moisture" \
      --define_regions ${ILAMB_ROOT}/data/regions/GlobalLandNoAnt.nc ${ILAMB_ROOT}/data/regions/Koppen.nc \
-     --regions global tropical arid temperate cold polar \
+     --regions global tropical arid temperate cold \
      --build_dir ./_build \
      --rmse_score_basis cycle \
