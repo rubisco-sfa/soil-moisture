@@ -128,19 +128,6 @@ GISS-E3-G:
     - /lustre/orion/cli137/world-shared/ESGF-data/CMIP6/CMIP/NASA-GISS/GISS-E3-G/historical/r1i1p1f1/fx/areacella/gr/v20220727
     - /lustre/orion/cli137/world-shared/ESGF-data/CMIP6/CMIP/NASA-GISS/GISS-E3-G/historical/r1i1p1f1/fx/sftlf/gr/v20220727
 
-IPSL-CM6A-LR:
-  modelname: IPSL-CM6A-LR
-  color: "#8c564b"
-  path: None
-  paths:
-    - /lustre/orion/cli137/world-shared/ESGF-data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Amon/evspsbl/gr/v20180803
-    - /lustre/orion/cli137/world-shared/ESGF-data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Emon/mrsol/gr/v20180803
-    - /lustre/orion/cli137/world-shared/ESGF-data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Lmon/gpp/gr/v20180803
-    - /lustre/orion/cli137/world-shared/ESGF-data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Lmon/lai/gr/v20180803
-    - /lustre/orion/cli137/world-shared/ESGF-data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Lmon/mrsos/gr/v20180803
-    - /lustre/orion/cli137/world-shared/ESGF-data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/fx/areacella/gr/v20180803
-    - /lustre/orion/cli137/world-shared/ESGF-data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/fx/sftlf/gr/v20180803
-
 MPI-ESM1-2-LR:
   modelname: MPI-ESM1-2-LR
   color: "#c49c94"
